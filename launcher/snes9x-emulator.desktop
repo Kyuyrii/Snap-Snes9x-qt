@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Snes9x [NyKyu]
+Comment=A Super Nintendo emulator
+Comment[de]=Ein Super Nintendo‑Emulator
+Comment[pl]=Emulator Super Nintendo
+Type=Application
+Categories=Game;Emulator;
+MimeType=application/vnd.nintendo.snes.rom;application/x-snes-rom;
+Exec=${SNAP}/usr/bin/snes9x-qt %F
+Icon=${SNAP}/usr/gui/snes9x.svg
