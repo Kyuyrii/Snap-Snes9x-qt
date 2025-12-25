@@ -23,7 +23,6 @@ apps:
       - snap/command-chain/desktop-launch6
     command: usr/bin/snes9x-qt
     desktop: usr/gui/snes9x-emulator.desktop
-    common-id: com.snes9x.Snes9x
     environment:
       SNAP_DESKTOP_RUNTIME: $SNAP/kf6
       GTK_USE_PORTAL: "1"
