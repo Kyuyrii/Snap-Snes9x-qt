@@ -1,0 +1,7 @@
+#!/bin/bash
+
+unset QT_QPA_PLATFORM
+
+export QT_QPA_PLATFORM=xcb
+
+exec "$@"
