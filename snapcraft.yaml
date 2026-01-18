@@ -1,6 +1,7 @@
 name: snes9x-qt
 base: core24
-version: '1.63'
+#version: '1.63'
+adopt-info: snes9x-qt-app
 platforms:
   amd64:
     build-on: [amd64]
@@ -18,9 +19,9 @@ icon: snes9x.svg
 
 apps:
   snes9x-qt:
-    command-chain: [snap/command-chain/qt_qpa_platform-xcb]
+    command-chain: [snap/command-chain/unset-qt_qpa_platform]
     command: usr/bin/snes9x-qt
-    desktop: meta/gui/snes9x-qt.desktop
+    desktop: snes9x-qt.desktop
     environment:
       QT_QPA_PLATFORMTHEME: xdgdesktopportal
       LD_LIBRARY_PATH: $SNAP/lxqt-support-core24/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:$LD_LIBRARY_PATH
@@ -59,10 +60,10 @@ package-repositories:
     key-id: 444DABCF3667D0283F894EDDE6D4736255751E5D
 
 parts:
-  snes9x:
+  snes9x-qt-app:
     plugin: cmake
     source: https://github.com/snes9xgit/snes9x.git
-    source-tag: $SNAPCRAFT_PROJECT_VERSION
+#    source-tag: $SNAPCRAFT_PROJECT_VERSION
     source-subdir: qt
     build-packages:
       - libsdl2-dev
@@ -71,9 +72,12 @@ parts:
     cmake-parameters:
       - -DCMAKE_BUILD_TYPE=Release
       - -DCMAKE_INSTALL_PREFIX=/usr
+    override-build: |
+      craftctl default
+      craftctl set version=$(date +%Y-%m-%d)
 
   dependencies:
-    after: [snes9x]
+    after: [snes9x-qt-app]
     plugin: nil
     stage-packages:
       - libsdl2-2.0-0
@@ -87,8 +91,7 @@ parts:
     plugin: dump
     source: ./
     organize:
-      command-chain/qt_qpa_platform-xcb: snap/command-chain/qt_qpa_platform-xcb
-      snes9x-qt.desktop: meta/gui/snes9x-qt.desktop
+      command-chain/unset-qt_qpa_platform: snap/command-chain/unset-qt_qpa_platform
     prime:
-      - snap/command-chain/qt_qpa_platform-xcb
-      - meta/gui/snes9x-qt.desktop
+      - snap/command-chain/unset-qt_qpa_platform
+      - snes9x-qt.desktop
