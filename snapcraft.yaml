@@ -19,7 +19,7 @@ icon: snes9x.svg
 
 apps:
   snes9x-qt:
-    command-chain: [snap/command-chain/unset-qt_qpa_platform]
+    command-chain: [unset-qt_qpa_platform]
     command: usr/bin/snes9x-qt
     desktop: snes9x-qt.desktop
     environment:
@@ -86,12 +86,10 @@ parts:
       - usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libSDL2-2.0.so*
       - usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libdecor-0.so*
 
-  command-chain-and-desktop:
+  other-files:
     after: [dependencies]
     plugin: dump
-    source: ./
-    organize:
-      command-chain/unset-qt_qpa_platform: snap/command-chain/unset-qt_qpa_platform
+    source: ./other-files
     prime:
-      - snap/command-chain/unset-qt_qpa_platform
+      - unset-qt_qpa_platform
       - snes9x-qt.desktop
