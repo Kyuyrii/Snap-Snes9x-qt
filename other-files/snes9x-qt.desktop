@@ -7,3 +7,4 @@ Type=Application
 Categories=Game;Emulator;
 Exec=snes9x-qt
 Icon=snes9x
+StartupWMClass=snes9x-qt
