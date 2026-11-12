@@ -19,13 +19,11 @@ icon: snes9x.svg
 
 apps:
   snes9x-qt:
-    command-chain: [unset-qt_qpa_platform]
+    command-chain: [force-snap-common-folder]
     command: usr/bin/snes9x-qt
     desktop: snes9x-qt.desktop
     environment:
       QT_QPA_PLATFORMTHEME: xdgdesktopportal
-      LD_LIBRARY_PATH: $SNAP/lxqt-support-core24/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:$LD_LIBRARY_PATH
-      QT_PLUGIN_PATH: $SNAP/lxqt-support-core24/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/qt6/plugins:$QT_PLUGIN_PATH
     extensions: [kde-neon-6]
     plugs:
       - screen-inhibit-control
@@ -39,25 +37,6 @@ apps:
 plugs:
   shared-memory:
     private: true
-  lxqt-support-core24:
-    content: lxqt-support-core24
-    interface: content
-    target: $SNAP/lxqt-support-core24
-    default-provider: lxqt-support-core24
-
-layout:
-  /usr/share/color-schemes:
-    symlink: $SNAP/lxqt-support-core24/usr/share/color-schemes
-  /usr/share/Kvantum:
-    symlink: $SNAP/lxqt-support-core24/usr/share/Kvantum
-
-package-repositories:
-  - type: apt
-    url: http://origin.archive.neon.kde.org/user
-    suites: [noble]
-    components: [main]
-    architectures: [amd64, arm64]
-    key-id: 444DABCF3667D0283F894EDDE6D4736255751E5D
 
 parts:
   snes9x-qt-app:
@@ -91,5 +70,5 @@ parts:
     plugin: dump
     source: ./other-files
     prime:
-      - unset-qt_qpa_platform
+      - force-snap-common-folder
       - snes9x-qt.desktop
