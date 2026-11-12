@@ -30,4 +30,12 @@ for d in themes mime glib-2.0 icons; do
   link_into_common "$SNAP_USER_DATA/.local/share/$d" "$SNAP_USER_COMMON/.local/share/$d"
 done
 
+if [ -d "$SNAP_USER_DATA/.config/snes9x" ]; then
+    mv -f "$SNAP_USER_DATA/.config/snes9x" "$SNAP_USER_COMMON/.config/"
+fi
+
+if [ -d "$SNAP_USER_DATA/.local/share/snes9x" ]; then
+    mv -f "$SNAP_USER_DATA/.local/share/snes9x" "$SNAP_USER_COMMON/.local/share/"
+fi
+
 exec "$@"
