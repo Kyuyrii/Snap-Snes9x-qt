@@ -1,7 +1,5 @@
 #!/bin/bash
 
-unset QT_QPA_PLATFORM
-
 export XDG_CONFIG_HOME="$SNAP_USER_COMMON/.config"
 export XDG_DATA_HOME="$SNAP_USER_COMMON/.local/share"
 
