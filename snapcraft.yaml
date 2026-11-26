@@ -69,6 +69,3 @@ parts:
     after: [dependencies]
     plugin: dump
     source: ./other-files
-    prime:
-      - force-snap-common-folder
-      - snes9x-qt.desktop
